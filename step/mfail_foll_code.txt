@@ -1,0 +1,15 @@
+var cnt = 1000; 
+var offst = 0;
+var repeat = 1;
+var b = [];
+while (offst < 22000) {
+if (offst < repeat){
+var res = API.users.getFollowers({"user_id":gid,"count": cnt,"offset": offst+step});
+var a = res.items;
+repeat = res.count;
+b.push(a);
+}
+offst = offst + cnt;
+}
+return b;
+

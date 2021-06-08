@@ -1,0 +1,27 @@
+var i = 0;
+var index = 0; 
+var cnt = 1000; var offst = 0;
+var result = [];
+var fail = [];
+while(index < gid.length && i<25){
+var repeat = 1;
+var b = [];
+while (offst < repeat && i<25) {
+i = i +1;
+var resps = API.users.getFollowers({"user_id":gid[index ],"count": cnt,"offset": offst});
+var a = resps.items;
+repeat = resps.count;
+if (repeat > 21000){
+offst = repeat;
+fail.push(index);
+}
+offst = offst + cnt;
+b.push(a);
+}
+result.push(b);
+index=index+1;
+offst = 0;
+}
+fail.push (index);
+result.push (fail);
+return result;

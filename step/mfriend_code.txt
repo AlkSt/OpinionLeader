@@ -1,0 +1,21 @@
+var i = 0;
+var index = 0; 
+var cnt = 1000; var offst = 0;
+var result = [];
+while(index < gid.length && i<25){
+var repeat = 1;
+var b = [];
+while (offst < repeat && i<25) {
+i = i +1;
+var resps = API.friends.get({"user_id":gid[index ],"count": cnt,"offset": offst});
+var a = resps.items;
+repeat = resps.count;
+offst = offst + cnt;
+b.push(a);
+}
+result.push(b);
+index=index+1;
+offst = 0;
+}
+result.push (index);
+return result;
