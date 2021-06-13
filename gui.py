@@ -109,27 +109,27 @@ def main():
             window['-PROGRESS-'].UpdateBar(50)
 
             G = create_graph.get_graph(file_name)
-            results = [{},{},{},{}]
-            funcs = [network_analitic.degree_centralitys,network_analitic.cluster_runk, network_analitic.stars_rank, network_analitic.leader_rank]
-            procs =[]
-                # создаем объект блокировки
-            lock = multiprocessing.Lock()
-            # создаем очередь
-            queue = multiprocessing.Queue()
-            for i in range(len(funcs)):
-                proc = multiprocessing.Process(target=funcs[i], args=(lock, queue, G))
-                procs.append(proc)
-                proc.start()
+            # results = [{},{},{},{}]
+            # funcs = [network_analitic.degree_centralitys,network_analitic.cluster_runk, network_analitic.stars_rank, network_analitic.leader_rank]
+            # procs =[]
+            #     # создаем объект блокировки
+            # lock = multiprocessing.Lock()
+            # # создаем очередь
+            # queue = multiprocessing.Queue()
+            # for i in range(len(funcs)):
+            #     proc = multiprocessing.Process(target=funcs[i], args=(lock, queue, G))
+            #     procs.append(proc)
+            #     proc.start()
 
-                while proc.is_alive():
-                    window['-PROGRESS-'].UpdateBar(i*12.5+50)
-                while not queue.empty():
-                    results[i] = (queue.get())
-            # ждем результатов
-            for proc in procs: proc.join()             
-            # освобождаем ресурсы
-            for proc in procs: proc.close() 
-            DC, CR, SR, LR = results
+            #     while proc.is_alive():
+            #         window['-PROGRESS-'].UpdateBar(i*12.5+50)
+            #     while not queue.empty():
+            #         results[i] = (queue.get())
+            # # ждем результатов
+            # for proc in procs: proc.join()             
+            # # освобождаем ресурсы
+            # for proc in procs: proc.close() 
+            # DC, CR, SR, LR = results
 
             
             # arr = multiprocessing.Array('i', 100000)
@@ -153,21 +153,21 @@ def main():
             # # очищаем используемые ресурсы
             # [proc.close() for proc in procs]
 
-            # start_time = time.time()       
-            # DC = network_analitic.degree_centralitys(G)
-            # print(time.time() - start_time)
+            start_time = time.time()       
+            DC = network_analitic.degree_centralitys(None, None, G)
+            print(time.time() - start_time)
 
-            # start_time = time.time()  
-            # CR = network_analitic.cluster_runk(G)
-            # print(time.time() - start_time)
+            start_time = time.time()  
+            CR = network_analitic.cluster_runk(None, None, G)
+            print(time.time() - start_time)
 
-            # start_time = time.time()  
-            # SR = network_analitic.stars_rank(G)
-            # print(time.time() - start_time)
+            start_time = time.time()  
+            SR = network_analitic.stars_rank(None, None, G)
+            print(time.time() - start_time)
 
-            # start_time = time.time()  
-            # LR = network_analitic.leader_rank (G)
-            # print(time.time() - start_time)
+            start_time = time.time()  
+            LR = network_analitic.leader_rank (None, None, G)
+            print(time.time() - start_time)
 
             # обновление полей
             window['-PROGRESS-'].UpdateBar(100)

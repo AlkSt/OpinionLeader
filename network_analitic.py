@@ -96,9 +96,9 @@ def cluster_runk(lock, lst, G):
         cluster_deg[key] *= sum
     # возрат метрики
     res = sorted(cluster_deg.items(), key=lambda item: item[1],reverse= True)
-    with lock:
-        lst.put(dict(res))
-    # return dict(res)
+    # with lock:
+    #     lst.put(dict(res))
+    return dict(res)
 
 def degree_centralitys(lock, lst, G):
 
@@ -108,9 +108,9 @@ def degree_centralitys(lock, lst, G):
         centrality[node] = deg * norm
      
     res = sorted(centrality.items(), key=lambda item: item[1],reverse= True)
-    with lock:
-        lst.put(dict(res))
-    # return dict(res)
+    # with lock:
+    #     lst.put(dict(res))
+    return dict(res)
 
 
 def leader_rank(lock, lst, G):
@@ -157,9 +157,9 @@ def leader_rank(lock, lst, G):
         LR[k] += avg
     res = sorted(LR.items(), key=lambda item: item[1],reverse= True)
     print(i)
-    with lock:
-        lst.put(dict(res))
-    # return dict(res)
+    # with lock:
+        # lst.put(dict(res))
+    return dict(res)
 
 
 def clusters(G):
@@ -198,9 +198,9 @@ def stars_rank(lock, lst, G):
 
 
     res = sorted(c_degree.items(), key=lambda item: item[1],reverse= True)
-    with lock:
-        lst.put(dict(res))
-    # return dict(res)
+    # with lock:
+    #     lst.put(dict(res))
+    return dict(res)
 
 
 
